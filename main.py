@@ -22,9 +22,9 @@ url = 'https://pantip.com/topic/38478051'
 data = pantip_crawling('https://pantip.com/topic/37395992')
 '''
 
-keyword = ['กินดี', 'อยู่ดี', 'เงินเดือน', 'สบาย']
+keyword = ['อยู่ดี', 'เงินเดือน']
 time = ' after:2017-12-31 before:2019-1-1'
-num_link = 10
+num_link = 5
 
 data_ower = list()
 for key in keyword:
@@ -50,7 +50,7 @@ result = export_db(host, db_name, col_name, 'pantip.json')
 # https://www.lighttag.io/
 
 # Read the result from labeled data
-labeled_data = json_read(r"database\filter1_annotations.json")
+labeled_data = json_read(r"database\phase1_annotations.json")
 
 # Discriminate data after labeling
 labeled_data = discriminate_data(labeled_data)
