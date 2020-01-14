@@ -36,21 +36,27 @@ def tokenize(data):
 
 def remove_space(data):
     modified_data = list()
-    for text in data:
-        data = [word for word in text if word.strip() != '']
-        modified_data.append(data)
+    for text_list in data:
+        #data = [word for word in text_list if word.strip() != '']
+        new_list = list()
+        for word in text_list:
+            if word.strip() != '':
+                new_list.append(word) 
+        modified_data.append(new_list)
+        
     return modified_data
     
 
 def remove_stopwords(data):
     # Get stopwords
-    stopwords = stopwords.words('thai')
+    # Add stopwords "C:\Users\user\Anaconda3\Lib\site-packages\pythainlp\corpus\stopwords-th.txt"
+    sw = stopwords.words('thai')
     # Remove stopwords
     modified_data = list()
     for text in data:
         modified_list = list()
         for word in text:
-            if word not in stopwords:
+            if word not in sw:
                 modified_list.append(word)
         modified_data.append(modified_list)
     return modified_data
@@ -88,8 +94,11 @@ tokenized_data = remove_space(tokenized_data)
 # Remove stopwords
 tokenized_data = remove_stopwords(tokenized_data)
 
+'''
 # Save data
-json_write('tokenized_data.json' ,{'data':tokenized_data})
+data_dict = {'data':tokenized_data}
+json_write('tokenized_data.json', data_dict)
 
 # read data
 tokenized_data = json_read('tokenized_data.json')
+'''

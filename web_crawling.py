@@ -15,7 +15,7 @@ options = webdriver.ChromeOptions()
 #options.add_argument('headless')
 
 # define url
-url = 'https://pantip.com/topic/39384671'
+url = 'https://pantip.com/topic/38478051'
 
 # initialize the driver
 driver = webdriver.Chrome(executable_path = "C:\webdriver\chromedriver.exe", options = options)
@@ -60,16 +60,15 @@ print(time)
 all_comment = list()
 sub_post = soup.find_all("div", id = re.compile("^comment-[0-9]+"))
 for div in sub_post:
-    if len(div.get_text().strip()) > 1:
-        post = div.find(class_ = 'display-post-story').get_text().strip()
-        if post.find('ความคิดเห็นนี้ถูกลบเนื่องจาก') == -1:
-            reply ={
-                    'post' : post,
-                    'post_number' : div.find(class_ = 'display-post-number').get_text().strip(),
-                    'post_owner' : div.find(class_ = 'display-post-name').get_text().strip(),
-                    'time' : div.find(class_ = 'timeago').get_text().strip()
-                    }
-            all_comment.append(reply)
+    post = div.find(class_ = 'display-post-story').get_text().strip()
+    if post.find('ความคิดเห็นนี้ถูกลบเนื่องจาก') == -1:
+        reply ={
+                'post' : post,
+                'post_number' : div.find(class_ = 'display-post-number').get_text().strip(),
+                'post_owner' : div.find(class_ = 'display-post-name').get_text().strip(),
+                'time' : div.find(class_ = 'timeago').get_text().strip()
+                }
+        all_comment.append(reply)
 
 all_comment[:3]
 driver.close()

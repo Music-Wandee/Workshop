@@ -31,6 +31,7 @@ def insert_db(host, db_name, col_name, data_dict):
                 duplicate_data.append(data_dict)
     except:
         status = False
+        mydb.logout()
             
     mydb.logout()
     
